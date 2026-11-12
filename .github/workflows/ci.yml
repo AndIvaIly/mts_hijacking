@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Линт (decision log, запрещённые файлы, линтеры областей)
+        run: make lint
+
+      - name: Тесты
+        run: make test
+
+      - name: Decision log только дополняется
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: python3 scripts/checks.py decision-log --base "origin/$BASE_REF"
+
+      # Метку cross-workspace ставит владелец задетой области, когда согласен с правкой.
+      - name: Границы рабочих областей
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_REF: ${{ github.head_ref }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          ALLOW_CROSS_WORKSPACE: ${{ contains(github.event.pull_request.labels.*.name, 'cross-workspace') && '1' || '0' }}
+        run: >
+          python3 scripts/checks.py workspaces
+          --base "origin/$BASE_REF"
+          --github-login "$PR_AUTHOR"
+          --branch "$HEAD_REF"

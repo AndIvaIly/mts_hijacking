@@ -1,0 +1,22 @@
+# Владельцы областей: GitHub запрашивает их ревью на pull request.
+# Карта областей — в workspaces.toml; этот файл должен ей соответствовать.
+#
+# TODO: подставить GitHub-логины участников (вопрос 1 в docs/team-questions.md) и раскомментировать.
+# Пока логинов нет, файл ничего не делает.
+
+# /core/            @ivan-login
+# /solution.py      @ivan-login
+# /server/          @arthur-login
+# /deploy/          @arthur-login
+# /Dockerfile       @arthur-login
+# /compose.yaml     @arthur-login
+# /.dockerignore    @arthur-login
+# /.env.example     @arthur-login
+# /web/             @andrew-login
+
+# Общая зона: ревью всех троих.
+# /docs/            @ivan-login @arthur-login @andrew-login
+# /scripts/         @ivan-login @arthur-login @andrew-login
+# /.github/         @ivan-login @arthur-login @andrew-login
+# /AGENTS.md        @ivan-login @arthur-login @andrew-login
+# /workspaces.toml  @ivan-login @arthur-login @andrew-login

@@ -1,0 +1,4 @@
+#!/bin/sh
+# Подключается командой: make setup OWNER=<ivan|arthur|andrew>
+# Проверяет decision log, запрещённые файлы и границы рабочих областей.
+exec python3 scripts/checks.py pre-commit

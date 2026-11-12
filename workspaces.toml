@@ -1,0 +1,25 @@
+# Карта рабочих областей. Единственный источник правды о том, кто что может менять.
+# Читать чужую область можно, менять нельзя. Всё, что не перечислено ниже, — общая зона:
+# её меняют через pull request с ревью остальных участников.
+#
+# paths:  путь с "/" на конце — каталог целиком, без "/" — конкретный файл.
+# github: логины участника на GitHub; по ним CI определяет автора pull request.
+# Проверка: python3 scripts/checks.py workspaces --staged
+
+[workspaces.ivan]
+name = "Ivan"
+role = "Ядро консультанта: поиск по базе знаний, логика диалога, solution.py"
+github = []
+paths = ["core/", "solution.py"]
+
+[workspaces.arthur]
+name = "Arthur"
+role = "API-сервер, хранение, Docker, деплой, сборка сабмита"
+github = []
+paths = ["server/", "deploy/", "Dockerfile", "compose.yaml", ".dockerignore", ".env.example"]
+
+[workspaces.andrew]
+name = "Andrew"
+role = "Веб-интерфейс чата, режим отладки, история, виджет"
+github = []
+paths = ["web/"]

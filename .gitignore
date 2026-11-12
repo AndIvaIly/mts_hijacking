@@ -1,0 +1,38 @@
+# Данные кейса: база знаний, вопросы, эталонные ответы, регламент. В репозиторий не попадают (D-5).
+/data/*
+!/data/README.md
+knowledge-base*
+knowledge_base*
+submission.csv
+
+# Секреты и локальные настройки
+.env
+.env.*
+!.env.example
+.workspace-owner
+
+# Базы данных и артефакты сборки
+*.sqlite
+*.sqlite3
+*.db
+/dist/
+/build/
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+web/dist/
+
+# Редакторы и ОС
+.idea/
+.vscode/
+.DS_Store
